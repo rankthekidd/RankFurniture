@@ -1,0 +1,92 @@
+# Furniture plugin by rankthekidd (IGN). This plugin has only been released for use by Michael's Online Game of Life. 
+# Please do not copy the code yadayadayada
+
+#
+# ===================================================================
+#
+#                    R A N K  F U N I T U R E
+#                           API Usage
+#
+# ===================================================================
+#
+# To get a list of all furniture items you have set up, you must put this in your Main file (whatever you call it. Main.java, Lead.java..whatever). 
+#
+# 		for(String key : RankFurniture.getFurnItems().keySet()) {
+#			furns.put(key, RankFurniture.getFurnItems().get(key)); 
+#			Bukkit.getConsoleSender().sendMessage("§aFurniture Added: " + key);
+#		}
+# 
+# To actually get the items and put them in a GUI:
+#
+# 		for(String key : plugin.furns.keySet()) {
+#			FurnData fd = plugin.furns.get(key);
+#			ItemStack furn = Main.itemMaker(1, true, false, fd.getItem(), fd.getTitle(), fd.getLore(), fd.getModelData());
+#			//this is just how to get the items from the list. Do whatever you want after this code.
+#       }
+#
+#
+# ===================================================================
+#
+#                    R A N K  F U N I T U R E
+#                           API Events
+#
+# ===================================================================
+#
+# There are a few events that you can listen for. FurnPlaceEvent, FurnPickupEvent, and FurnRotateEvent
+#
+# FurnPlaceEvent (checks when a player wants to place a furniture item. Cancel this if the do not have the perms to do this.)
+#    can access: player, furnID, permission, cost, location
+# FurnPickupEvent (checks when a player wants to pick up a furniture item. Cancel this if the do not have the perms to do this.)
+#    can access: player, furnID, permission, location
+# FurnRotateEvent (checks when a player wants to rotate a furniture item. Cancel this if the do not have the perms to do this.)
+#    can access: player, furnID, permission, location
+# FurnClickEvent (checks when player clicks a furniture item. Cancellable.)
+#    can access: player, furnID, permission, location, tags
+#
+# ===================================================================
+#
+#                    R A N K  F U N I T U R E
+#                         Furniture Items
+#
+# ===================================================================
+# Here is a sample furniture item setup
+#
+# NOTE: `furniture:` MUST be included at the top of the list for the furniture items (only once). IF IT IS NOT: things will break
+# NOTE: Cost is in LONG format. Just FYI
+#
+#furniture: 
+#  waste_bin:
+#    item: 'EMERALD'
+#    title: '&6Waste Bin'
+#    lore:
+#      - &6Waste Bin
+#      - &d&lVIP++ &r&7Item
+#    modelData: 1005
+#    permission: 'furn.wastebin'
+#    cost: 200
+#     tags:
+#       - 'stove'
+#       - 'chair'
+
+
+furniture:
+
+
+#
+# ===================================================================
+#
+#                    R A N K  F U N I T U R E
+#                           Specifics
+#
+# ===================================================================
+#
+#
+#
+# Put the name of the GUI you're using here:
+# This will check if the item clicked in this GUI is a furniture item, and if it is (and the event isn't cancelled), it will spawn the clicked furniture item. 
+# NOTE: IF YOU DO NOT SET THIS CORRECTLY, PLAYERS WILL BE ABLE TO TAKE THE ITEMS OUT OF THE GUI. PLEASE DOUBLE CHECK THIS IS CORRECT AND SPELLED RIGHT!
+
+
+specifics:
+  menuname: 'Furniture Menu'
+

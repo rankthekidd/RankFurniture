@@ -1,0 +1,12 @@
+name: RankFurniture
+author: Ryan
+main: com.ryan.rankfurniture.RankFurniture
+version: 1.6.2
+description: Furniture plugin made for MOGL
+api-version: 1.13
+
+commands:
+  furniture:
+   usage: /furniture <spawn/list> [furnID]
+   description: command by itself opens GUI. Other args will spawn furniture with furnID.
+   aliases: [furn,f]
