@@ -88,6 +88,7 @@ public class SpawnFurn implements Listener {
 		stand.setGravity(false);
 		stand.setSmall(true);
 		stand.setSilent(true);
+		stand.setBasePlate(false);
 		if(name != null) {
 			stand.setCustomName(name);
 			stand.setCustomNameVisible(true);
