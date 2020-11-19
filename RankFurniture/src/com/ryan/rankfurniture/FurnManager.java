@@ -61,6 +61,7 @@ public class FurnManager implements Listener{
 						if(ent.getType().equals(EntityType.ARMOR_STAND)) {
 							ArmorStand stand = (ArmorStand) ent;
 							if(stand.isVisible()) return;
+							if(!stand.getScoreboardTags().contains("furniture")) return;
 							ItemStack onHead = stand.getEquipment().getHelmet();
 							for(String key : SpawnFurn.furniture.keySet())
 							{
@@ -95,6 +96,7 @@ public class FurnManager implements Listener{
 						if(ent.getType().equals(EntityType.ARMOR_STAND)) {
 							ArmorStand stand = (ArmorStand) ent;
 							if(stand.isVisible()) return;
+							if(!stand.getScoreboardTags().contains("furniture")) return;
 							if(stand.getEquipment().getHelmet() == null) return;
 							ItemStack onHead = stand.getEquipment().getHelmet();
 							for(String key : SpawnFurn.furniture.keySet())
@@ -124,6 +126,7 @@ public class FurnManager implements Listener{
 				if(ent.getType().equals(EntityType.ARMOR_STAND)) {
 					ArmorStand stand = (ArmorStand) ent;
 					if(stand.isVisible()) return;
+					if(!stand.getScoreboardTags().contains("furniture")) return;
 					ItemStack onHead = stand.getEquipment().getHelmet();
 					for(String key : SpawnFurn.furniture.keySet())
 					{

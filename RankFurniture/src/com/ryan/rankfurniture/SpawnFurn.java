@@ -50,7 +50,6 @@ public class SpawnFurn implements Listener {
 		double z = p.getLocation().getBlock().getLocation().getZ()+0.5;
 
 		Location loc;
-		ArmorStand stand;
 
 		loc = new Location(world, x, y, z);
 
@@ -82,19 +81,21 @@ public class SpawnFurn implements Listener {
 		if(p.getGameMode().equals(GameMode.ADVENTURE) || p.getGameMode().equals(GameMode.SPECTATOR)) return;
 
 		world.getBlockAt(loc).setType(Material.BARRIER); //sets barrier at location
-
-		stand = (ArmorStand) world.spawnEntity(loc, EntityType.ARMOR_STAND); //spawns armor stand
-		stand.setVisible(false);
-		stand.setGravity(false);
-		stand.setSmall(true);
-		stand.setSilent(true);
-		stand.setBasePlate(false);
-		if(name != null) {
-			stand.setCustomName(name);
-			stand.setCustomNameVisible(true);
-		}
-		// "Put the little thingy on the thing man eh"  -Boomhauer 
-		stand.getEquipment().setHelmet(furn);
+		
+		loc.getWorld().spawn(loc, ArmorStand.class, consumerStand -> {
+			consumerStand.setVisible(false);
+			consumerStand.setGravity(false);
+			consumerStand.setSmall(true);
+			consumerStand.setSilent(true);
+			consumerStand.setInvulnerable(true);
+			consumerStand.setBasePlate(false);
+			consumerStand.addScoreboardTag("furniture");
+			if(name != null) {
+				consumerStand.setCustomName(name);
+				consumerStand.setCustomNameVisible(true);
+			}
+			consumerStand.getEquipment().setHelmet(furn);
+		});
 		
 		String message = ("§7You have placed " + fd.getTitle());
 		p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(message));
