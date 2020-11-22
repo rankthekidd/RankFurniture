@@ -35,11 +35,14 @@ public class FurnLoader {
 		{
 			for(String key : plugin.getConfig().getConfigurationSection("furniture").getKeys(false))
 			{
-				FurnData fd = new FurnData(Material.DIRT, "error", new String[] {"broken?"}, new Integer[] {0000}, "error", 0L, new String[] {"error"});
+				FurnData fd = new FurnData(Material.DIRT, "error" , "error", new String[] {"broken?"}, new Integer[] {0000}, "error", 0L, new String[] {"error"});
 
 				//Item
 				fd.setItem(Material.getMaterial(plugin.getConfig().getString("furniture." + key + ".item")));
 
+				//ID
+				fd.setFurnID(key);
+				
 				//Title
 				fd.setTitle(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("furniture." + key + ".title")));
 

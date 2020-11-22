@@ -30,18 +30,18 @@ public class FurnitureCommand implements CommandExecutor{
 					case "spawn":
 						if(args.length > 1) {
 							if(SpawnFurn.furniture.containsKey(args[1])) {
-								plugin.spawnFurn.spawnItem(args[1], p, null);
+								plugin.spawnFurn.spawnItem(args[1], p);
 							} else p.sendMessage("§4This item does not exist."); return true;
 						}
 						break;
 					case "info":
 						p.sendMessage("§9RankFurniture §8§l>>§r§a Version: §2" + plugin.getDescription().getVersion() + "\n"
-								+ "§aDescription: §2A Furniture Plugin Made Specifically For MOGL");
+								+ "§aDescription: §2" + plugin.getDescription().getDescription());
 						if(p.isOp()) {
 
 							final ComponentBuilder msg = new ComponentBuilder();
 							for(String key : SpawnFurn.furniture.keySet()) {
-								msg.append(ChatColor.GREEN + key.toUpperCase() + ChatColor.WHITE + ", ");
+								msg.append(ChatColor.GREEN + key + ChatColor.WHITE + ", ");
 								msg.event(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/furniture about " + key));
 								msg.event(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("§7Click to see more info about §a" + key.toUpperCase())));
 
@@ -62,12 +62,11 @@ public class FurnitureCommand implements CommandExecutor{
 										tags += line + ", ";
 									}
 
-									p.sendMessage("\n§eInfo about " + args[1].toUpperCase() +
+									p.sendMessage("\n§eInfo about §l" + args[1] +
 											"\n§r§2Name: " + fd.getTitle() +
 											"\n§r§2Permission: §f" + fd.getPermission() + 
 											"\n§r§2Cost: §f" + fd.getCost() + 
 											"\n§r§2Tags: §f" + tags + "\n");
-
 								}
 							}
 						}

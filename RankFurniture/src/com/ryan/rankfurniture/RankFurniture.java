@@ -17,12 +17,9 @@ import com.ryan.rankfurniture.data.FurnLoader;
 
 public class RankFurniture extends JavaPlugin{
 
-	//All them public things that need to accessed elsewhere
-	//public Map<String, ItemStack> furnList = new HashMap<String, ItemStack>();
-
-	//My classes that need Main.java
 	public SpawnFurn spawnFurn = new SpawnFurn(this);
-	public FurnManager furnManager = new FurnManager(this);
+	//public FurnManager furnManager = new FurnManager(this);
+	public FurnInteract furnInteract = new FurnInteract(this);
 	public FurnitureCommand command = new FurnitureCommand(this);
 	public FurnLoader furnLoader = new FurnLoader(this);
 
@@ -36,20 +33,15 @@ public class RankFurniture extends JavaPlugin{
 
 		//register listeners here
 		Bukkit.getServer().getPluginManager().registerEvents(spawnFurn, this);
-		Bukkit.getServer().getPluginManager().registerEvents(furnManager, this);
-
-		Bukkit.getConsoleSender().sendMessage("\r\n" + 
-				" §6 _____  §a______ \r\n" + 
-				" §6|  __ \\§a|  ____|\r\n" + 
-				" §6| |__) §a| |__   " + "     [" + getDescription().getName() + "] " + getDescription().getName() + "\r\n" +
-				" §6|  _  /§a|  __|  " + "     V" + getDescription().getVersion() + " has been enabled successfully!\r\n" +
-				" §6| | \\ §a\\| |     \r\n" + 
-				" §6|_|  \\_§a\\_|     \r\n");
+		//Bukkit.getServer().getPluginManager().registerEvents(furnManager, this);
+		Bukkit.getServer().getPluginManager().registerEvents(furnInteract, this);
+		
+		Bukkit.getConsoleSender().sendMessage("§6" + getDescription().getName() + "§e v. §6" + getDescription().getVersion() + " §ehas been §aENABLED.");
 	}
 
 	public void onDisable() {
 		
-		Bukkit.getServer().broadcastMessage("§6Rank Furniture is Disabled!");
+		Bukkit.getConsoleSender().sendMessage("§6" + getDescription().getName() + "§e v. §6" + getDescription().getVersion() + " §ehas been §cDISABLED.");
 	}
 
 

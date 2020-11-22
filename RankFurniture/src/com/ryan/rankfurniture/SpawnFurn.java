@@ -13,10 +13,8 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
-
 import com.ryan.rankfurniture.api.FurnPlaceEvent;
 import com.ryan.rankfurniture.data.FurnData;
-
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 public class SpawnFurn implements Listener {
@@ -29,12 +27,7 @@ public class SpawnFurn implements Listener {
 
 	}
 
-	//=====================================================================================================================================================//
-	// 														SpawnFurn Functionality																		// 
-	//=====================================================================================================================================================//
-
-	//spawns the select item at the player's current location
-	public void spawnItem(String furnID, Player p, String name) {
+	public void spawnItem(String furnID, Player p) {
 
 		FurnPlaceEvent fe = new FurnPlaceEvent(p, furnID, furniture.get(furnID).getPermission(), furniture.get(furnID).getCost(), p.getLocation());
 		Bukkit.getPluginManager().callEvent(fe);
@@ -43,7 +36,6 @@ public class SpawnFurn implements Listener {
 		FurnData fd = furniture.get(furnID);
 		ItemStack furn = RankFurniture.itemMaker(1, true, false, fd.getItem(), fd.getTitle(), fd.getLore(), fd.getModelData()[0]);
 
-		//gets the user's location and adds .5 to x and y to make it in the center of the block.
 		World world = p.getWorld();
 		double x = p.getLocation().getBlock().getLocation().getX()+0.5;
 		double y = p.getLocation().getBlock().getLocation().getY();
@@ -53,7 +45,6 @@ public class SpawnFurn implements Listener {
 
 		loc = new Location(world, x, y, z);
 
-		//Checks to make sure there are no nearby entities that could mess up thefurniture being placed. Also prevents multiple furniture pieces in the samelocation. 
 		List<Entity> nearbyEnt = (List<Entity>)p.getLocation().getWorld().getNearbyEntities(p.getLocation(), 0.5, 0.5, 0.5);
 		for(int i = 0; i < nearbyEnt.size(); i++) {
 			if(nearbyEnt.get(i).getType().equals(EntityType.ARMOR_STAND)) {
@@ -81,7 +72,7 @@ public class SpawnFurn implements Listener {
 		if(p.getGameMode().equals(GameMode.ADVENTURE) || p.getGameMode().equals(GameMode.SPECTATOR)) return;
 
 		world.getBlockAt(loc).setType(Material.BARRIER); //sets barrier at location
-		
+
 		loc.getWorld().spawn(loc, ArmorStand.class, consumerStand -> {
 			consumerStand.setVisible(false);
 			consumerStand.setGravity(false);
@@ -90,13 +81,9 @@ public class SpawnFurn implements Listener {
 			consumerStand.setInvulnerable(true);
 			consumerStand.setBasePlate(false);
 			consumerStand.addScoreboardTag("furniture");
-			if(name != null) {
-				consumerStand.setCustomName(name);
-				consumerStand.setCustomNameVisible(true);
-			}
 			consumerStand.getEquipment().setHelmet(furn);
 		});
-		
+
 		String message = ("§7You have placed " + fd.getTitle());
 		p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(message));
 

@@ -5,16 +5,18 @@ import org.bukkit.Material;
 public class FurnData {
 	
 	private Material item;
-	private String title = "My Lamp";
+	private String furnID;
+	private String title;
 	private String[] lore;
 	private Integer[] modelData;
-	private String permission = "furn.lamp";
+	private String permission;
 	private Long cost = 0L;
 	private String[] tags;
 
 
-	public FurnData(Material item, String title, String[] lore, Integer[] modelData, String permission, Long cost, String[] tags) {
+	public FurnData(Material item, String furnID, String title, String[] lore, Integer[] modelData, String permission, Long cost, String[] tags) {
 		this.setItem(item);
+		this.setFurnID(furnID);
 		this.setTitle(title);
 		this.setLore(lore);
 		this.setModelData(modelData);
@@ -75,6 +77,20 @@ public class FurnData {
 
 	public void setModelData(Integer[] modelData) {
 		this.modelData = modelData;
+	}
+
+
+
+
+	public String getFurnID() {
+		return furnID;
+	}
+
+
+
+
+	public void setFurnID(String furnID) {
+		this.furnID = furnID;
 	}
 
 	
