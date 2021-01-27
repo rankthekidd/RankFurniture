@@ -49,7 +49,7 @@ public class SpawnFurn implements Listener {
 		for(int i = 0; i < nearbyEnt.size(); i++) {
 			if(nearbyEnt.get(i).getType().equals(EntityType.ARMOR_STAND)) {
 				ArmorStand nearbyStand = (ArmorStand) nearbyEnt.get(i);
-				if(nearbyStand.isSmall() && !nearbyStand.isVisible()) {
+				if(nearbyStand.getScoreboardTags().contains("furniture")) {
 					nearbyEnt.remove(i);
 				}
 			}

@@ -66,7 +66,7 @@ public class FurnInteract implements Listener{
 					if(ent.getType().equals(EntityType.ARMOR_STAND)) {
 						stand = (ArmorStand) ent;
 						onHead = stand.getEquipment().getHelmet();
-						if(onHead == null) return;
+						if(onHead == null) continue;
 						
 						fd = getFurnDataFromItemStack(onHead);
 						break;
@@ -76,6 +76,7 @@ public class FurnInteract implements Listener{
 				if(stand == null) return;
 				//All furniture armor stands are tagged with "furniture." This is easy to see if the given furniture item 
 				if(!stand.getScoreboardTags().contains("furniture")) return;
+				
 				if(fd == null) return;
 
 				if (p.getGameMode().equals(GameMode.ADVENTURE) || p.getGameMode().equals(GameMode.SPECTATOR)) return; 
@@ -133,6 +134,7 @@ public class FurnInteract implements Listener{
 	}
 
 	public FurnData getFurnDataFromItemStack(ItemStack onHead) {
+		if(!onHead.getItemMeta().hasCustomModelData()) return null;
 		for(String key : SpawnFurn.furniture.keySet()) {
 			FurnData fd = SpawnFurn.furniture.get(key);
 			for(int i = 0; i < fd.getModelData().length; i++) {
