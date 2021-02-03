@@ -22,7 +22,7 @@ public class FurnPlaceEvent extends Event implements Cancellable{
 		this.setFurnID(furnID);
 		this.setPermission(permission);
 		this.setCost(cost);
-		
+		this.setLocation(location);
 	}
 	
 	@Override
