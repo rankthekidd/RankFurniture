@@ -134,6 +134,7 @@ public class FurnInteract implements Listener{
 	}
 
 	public FurnData getFurnDataFromItemStack(ItemStack onHead) {
+		if(!onHead.hasItemMeta()) return null;
 		if(!onHead.getItemMeta().hasCustomModelData()) return null;
 		for(String key : SpawnFurn.furniture.keySet()) {
 			FurnData fd = SpawnFurn.furniture.get(key);
