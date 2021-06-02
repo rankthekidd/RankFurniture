@@ -35,7 +35,7 @@ public class FurnLoader {
 		{
 			for(String key : plugin.getConfig().getConfigurationSection("furniture").getKeys(false))
 			{
-				FurnData fd = new FurnData(Material.DIRT, "error" , "error", new String[] {"broken?"}, new Integer[] {0000}, "error", 0L, new String[] {"error"});
+				FurnData fd = new FurnData(Material.DIRT, "error" , "error", "error", new String[] {"broken?"}, new Integer[] {0000}, "error", 0L, new String[] {"error"});
 
 				//Item
 				fd.setItem(Material.getMaterial(plugin.getConfig().getString("furniture." + key + ".item")));
@@ -43,14 +43,24 @@ public class FurnLoader {
 				//ID
 				fd.setFurnID(key);
 				
+				//Category
+				fd.setCategory(plugin.getConfig().getString("furniture." + key + ".category", "none")); // default value of "none"
+				
 				//Title
 				fd.setTitle(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("furniture." + key + ".title")));
 
 				//Lore
-				List<String> configLore = color(plugin.getConfig().getStringList("furniture." + key + ".lore"));
-				String[] lore = new String[configLore.size()];
-				lore = configLore.toArray(lore);
-				fd.setLore(lore);
+				if(plugin.getConfig().contains("furniture." + key + ".lore"))
+				{
+					List<String> configLore = color(plugin.getConfig().getStringList("furniture." + key + ".lore"));
+					String[] lore = new String[configLore.size()];
+					lore = configLore.toArray(lore);
+					fd.setLore(lore);
+				}
+				else
+				{
+					fd.setLore(new String[] {});
+				}
 
 				//Model Data List
 				List<Integer> configModelData = (plugin.getConfig().getIntegerList("furniture." + key + ".modelData"));

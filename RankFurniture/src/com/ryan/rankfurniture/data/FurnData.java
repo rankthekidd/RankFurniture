@@ -6,6 +6,7 @@ public class FurnData {
 	
 	private Material item;
 	private String furnID;
+	private String category;
 	private String title;
 	private String[] lore;
 	private Integer[] modelData;
@@ -14,7 +15,7 @@ public class FurnData {
 	private String[] tags;
 
 
-	public FurnData(Material item, String furnID, String title, String[] lore, Integer[] modelData, String permission, Long cost, String[] tags) {
+	public FurnData(Material item, String furnID, String category, String title, String[] lore, Integer[] modelData, String permission, Long cost, String[] tags) {
 		this.setItem(item);
 		this.setFurnID(furnID);
 		this.setTitle(title);
@@ -91,6 +92,22 @@ public class FurnData {
 
 	public void setFurnID(String furnID) {
 		this.furnID = furnID;
+	}
+
+
+
+
+	public String getCategory()
+	{
+		return category;
+	}
+
+
+
+
+	public void setCategory(String category)
+	{
+		this.category = category;
 	}
 
 	
