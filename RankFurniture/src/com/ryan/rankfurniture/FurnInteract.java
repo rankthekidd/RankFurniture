@@ -75,7 +75,8 @@ public class FurnInteract implements Listener{
 				
 				if(stand == null) return;
 				//All furniture armor stands are tagged with "furniture." This is easy to see if the given furniture item 
-				if(!stand.getScoreboardTags().contains("furniture")) return;
+				//if(!stand.getScoreboardTags().contains("furniture")) return;
+				//TODO uncomment line above when MOGL switches to new world!!!
 				
 				if(fd == null) return;
 
