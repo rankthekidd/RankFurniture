@@ -39,6 +39,7 @@ public class FurnInteract implements Listener{
 	@EventHandler
 	public void clickFurnitureStand(PlayerArmorStandManipulateEvent e) {
 		if(e.getRightClicked().getScoreboardTags().contains("furniture")) {
+			e.getRightClicked().remove();
 			e.setCancelled(true);
 		}
 	}
